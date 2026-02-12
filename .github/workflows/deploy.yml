@@ -30,7 +30,11 @@ jobs:
 
       - name: Fix base path
         run: |
-          sed -i 's|<base href="/" />|<base href="/Blazor-application/" />|g' publish/wwwroot/index.html
+          echo "Before sed:"
+          cat publish/wwwroot/index.html | grep base
+          sed -i 's|<base href="/" />|<base href="/blazor-app-project/" />|g' publish/wwwroot/index.html
+          echo "After sed:"
+          cat publish/wwwroot/index.html | grep base
           touch publish/wwwroot/.nojekyll
 
       - name: Upload artifact
