@@ -10,21 +10,21 @@
        @onmouseenter="OnSidebarMouseEnter"
        @onmouseleave="OnSidebarMouseLeave">
     <nav class="sidebar-nav">
-        <NavLink class="sidebar-item" ActiveClass="active" href="/" Match="NavLinkMatch.All">
+        <NavLink class="sidebar-item" ActiveClass="active" href="" Match="NavLinkMatch.All">
             <span class="sidebar-icon">H</span>
             @if (Expanded)
             {
                 <span class="sidebar-label">Home</span>
             }
         </NavLink>
-        <NavLink class="sidebar-item" ActiveClass="active" href="/about">
+        <NavLink class="sidebar-item" ActiveClass="active" href="about">
             <span class="sidebar-icon">A</span>
             @if (Expanded)
             {
                 <span class="sidebar-label">About</span>
             }
         </NavLink>
-        <NavLink class="sidebar-item" ActiveClass="active" href="/settings">
+        <NavLink class="sidebar-item" ActiveClass="active" href="settings">
             <span class="sidebar-icon">S</span>
             @if (Expanded)
             {
