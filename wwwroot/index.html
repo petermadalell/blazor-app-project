@@ -7,6 +7,14 @@
     <title>Blazor Web App Project</title>
     <base href="/" />
     <link rel="stylesheet" href="app.css" />
+      <script>
+        (function () {
+          var route = new URLSearchParams(window.location.search).get('route');
+          if (route) {
+            window.history.replaceState(null, null, '/blazor-app-project' + route);
+          }
+        })();
+      </script>
 </head>
 
 <body>
