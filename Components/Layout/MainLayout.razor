@@ -1,0 +1,78 @@
+@inherits LayoutComponentBase
+
+<header class="top-header">
+    <button class="menu-btn" @onclick="ToggleSidebar" aria-label="Toggle sidebar">&#9776;</button>
+    <span class="app-title">BlazorApp</span>
+</header>
+
+<aside class="sidebar sidebar-transition"
+       style="width:@SidebarWidth"
+       @onmouseenter="OnSidebarMouseEnter"
+       @onmouseleave="OnSidebarMouseLeave">
+    <nav class="sidebar-nav">
+        <NavLink class="sidebar-item" ActiveClass="active" href="/" Match="NavLinkMatch.All">
+            <span class="sidebar-icon">H</span>
+            @if (Expanded)
+            {
+                <span class="sidebar-label">Home</span>
+            }
+        </NavLink>
+        <NavLink class="sidebar-item" ActiveClass="active" href="/about">
+            <span class="sidebar-icon">A</span>
+            @if (Expanded)
+            {
+                <span class="sidebar-label">About</span>
+            }
+        </NavLink>
+        <NavLink class="sidebar-item" ActiveClass="active" href="/settings">
+            <span class="sidebar-icon">S</span>
+            @if (Expanded)
+            {
+                <span class="sidebar-label">Settings</span>
+            }
+        </NavLink>
+    </nav>
+</aside>
+
+<main class="app-content content-transition" style="margin-left:@ContentMargin">
+    <div class="page-container">
+        @Body
+    </div>
+</main>
+
+@code {
+    private bool collapsed;
+    private bool hovering;
+
+    private bool Expanded => !collapsed || hovering;
+
+    private string SidebarWidth => Expanded
+        ? "var(--sidebar-width)"
+        : "var(--sidebar-collapsed-width)";
+
+    private string ContentMargin => collapsed
+        ? "var(--sidebar-collapsed-width)"
+        : "var(--sidebar-width)";
+
+    private void ToggleSidebar()
+    {
+        collapsed = !collapsed;
+        if (!collapsed)
+        {
+            hovering = false;
+        }
+    }
+
+    private void OnSidebarMouseEnter()
+    {
+        if (collapsed)
+        {
+            hovering = true;
+        }
+    }
+
+    private void OnSidebarMouseLeave()
+    {
+        hovering = false;
+    }
+}
